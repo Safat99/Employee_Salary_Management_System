@@ -1,0 +1,15 @@
+server:
+  port: 3000
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: hala_madrid
+    url: jdbc:postgresql://localhost:5432/technonexthr
+    platform: postgres
+    initialization-mode: always
+    continue-on-error: true
+
+  main:
+    web-application-type: servlet
