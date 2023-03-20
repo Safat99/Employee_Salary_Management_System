@@ -16,7 +16,7 @@ public class AttendanceServiceImpl implements AttendanceService{
     @Override
     public List<Attendance> findAllPresentByEmpId(long emp_id) {
         List<Attendance> attendances = attendanceDAO.findAllPresentByEmpId(emp_id);
-        System.out.println(attendances.size());
+        System.out.println("emp_id: "+ emp_id + " was present  for " + attendances.size() + " days");
         return attendances;
     }
 }

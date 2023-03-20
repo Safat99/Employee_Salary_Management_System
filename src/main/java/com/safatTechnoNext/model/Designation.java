@@ -3,11 +3,13 @@ package com.safatTechnoNext.model;
 public class Designation {
     private Long id;
     private String designation_name;
-    private Double salary;
+    private Integer salary;
 
 
+    public Designation() {
+    }
 
-    public Designation(Long id, String designation_name, Double salary) {
+    public Designation(Long id, String designation_name, Integer salary) {
         this.id = id;
         this.designation_name = designation_name;
         this.salary = salary;
@@ -29,11 +31,11 @@ public class Designation {
         this.designation_name = designation_name;
     }
 
-    public Double getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 }
