@@ -1,6 +1,7 @@
 package com.safatTechnoNext.Service;
 
 import com.safatTechnoNext.dao.SalaryDtoDAO;
+import com.safatTechnoNext.dto.SalaryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,9 @@ public class CalculateSalaryServiceImpl implements CalculateSalaryService {
     }
 
     @Override
-    public List<?> calculateSalaries(int id, int year, int month) {
+    public SalaryDTO calculateSalaries(int id, int year, int month) {
         int totalWorkingDays = findWorkingDays(year,month);
-        return null;
+        return salaryDtoDAO.calculateIndividualSalary(year, month, totalWorkingDays, id);
     }
 
 

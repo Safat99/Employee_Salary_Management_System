@@ -15,19 +15,9 @@ public class SalaryDtoDAOImpl implements SalaryDtoDAO{
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<SalaryDTO> calculateSalary(int totalWorkingDays) {
+    public List<SalaryDTO> calculateSalary(int year, int month, int totalWorkingDays) {
         String sql = String.format(
-                """
-                select\s
-                	emp_id, username, designation_name, count(*) as total_present_days,\s
-                	salary as monthly_salary, count(*) * salary / %d as allocated_salary
-                from attendance a
-                join employee e on a.emp_id = e.id\s
-                join designation d on d.id = e.designation_id
-                where is_present = true
-                group by emp_id, username, salary, designation_name;
-                """,
-                totalWorkingDays
+                "select * from calculate_salary_all(%d,%d,%d);", year, month, totalWorkingDays
         );
 
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SalaryDTO.class));
@@ -38,6 +28,15 @@ public class SalaryDtoDAOImpl implements SalaryDtoDAO{
         String sql = String.format("select find_total_days(%d, %d)", year, month);
         Integer total_days = jdbcTemplate.queryForObject(sql, Integer.class);
         return total_days;
+    }
+
+    @Override
+    public SalaryDTO calculateIndividualSalary(int year, int month, int totalWorkingDays, int id) {
+        String sql = String.format(
+                "select * from calculate_salary_all(%d,%d,%d) where employee_id =%d",
+                year,month,totalWorkingDays,id);
+        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(SalaryDTO.class));
+
     }
 
     @Override

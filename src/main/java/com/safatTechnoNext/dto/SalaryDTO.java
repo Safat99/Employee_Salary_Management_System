@@ -2,31 +2,33 @@ package com.safatTechnoNext.dto;
 
 public class SalaryDTO {
 
-    private Long emp_id;
+    private Integer employeeId;
     private String userName;
-    private String designationName;
-    private Integer totalPresentDays;
+    private String designation;
+    private Long totalPresentDays;
     private Integer monthlySalary;
 
-    private Integer allocatedSalary;
+    private Long monthlyAllocatedSalary;
 
-    public SalaryDTO(Long emp_id, String userName, String designationName, Integer totalPresentDays, Integer monthlySalary, Integer allocatedSalary) {
-        this.emp_id = emp_id;
+
+
+    public SalaryDTO(Integer emp_id, String userName, String designationName, Long totalPresentDays, Integer monthlySalary, Long allocatedSalary) {
+        this.employeeId = emp_id;
         this.userName = userName;
-        this.designationName = designationName;
+        this.designation = designationName;
         this.totalPresentDays = totalPresentDays;
         this.monthlySalary = monthlySalary;
-        this.allocatedSalary = allocatedSalary;
+        this.monthlyAllocatedSalary = allocatedSalary;
     }
 
     public SalaryDTO() {}
 
-    public Long getEmp_id() {
-        return emp_id;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmp_id(Long emp_id) {
-        this.emp_id = emp_id;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getUserName() {
@@ -37,19 +39,19 @@ public class SalaryDTO {
         this.userName = userName;
     }
 
-    public String getDesignationName() {
-        return designationName;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setDesignationName(String designationName) {
-        this.designationName = designationName;
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
-    public Integer getTotalPresentDays() {
+    public Long getTotalPresentDays() {
         return totalPresentDays;
     }
 
-    public void setTotalPresentDays(Integer totalPresentDays) {
+    public void setTotalPresentDays(Long totalPresentDays) {
         this.totalPresentDays = totalPresentDays;
     }
 
@@ -61,11 +63,11 @@ public class SalaryDTO {
         this.monthlySalary = monthlySalary;
     }
 
-    public Integer getAllocatedSalary() {
-        return allocatedSalary;
+    public Long getMonthlyAllocatedSalary() {
+        return monthlyAllocatedSalary;
     }
 
-    public void setAllocatedSalary(Integer allocatedSalary) {
-        this.allocatedSalary = allocatedSalary;
+    public void setMonthlyAllocatedSalary(Long monthlyAllocatedSalary) {
+        this.monthlyAllocatedSalary = monthlyAllocatedSalary;
     }
 }
