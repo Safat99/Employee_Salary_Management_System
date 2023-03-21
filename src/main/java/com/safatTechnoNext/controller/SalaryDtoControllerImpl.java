@@ -25,15 +25,23 @@ public class SalaryDtoControllerImpl implements SalaryDtoController{
     CalculateSalaryService calculateSalaryService;
 
     @Override
-    public ResponseEntity<List<SalaryDTO>> calculateSalaryAll() {
-        List<SalaryDTO> salaryDTOS =  salaryDtoDAO.calculateSalary();
+    public ResponseEntity<List<SalaryDTO>> calculateSalaryAll(int totalWorkingDays) {
+        List<SalaryDTO> salaryDTOS =  salaryDtoDAO.calculateSalary(totalWorkingDays);
+
         return new ResponseEntity<>(salaryDTOS, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<EmployeeNumberDTO>> countGender() {
         List<EmployeeNumberDTO> countGenders = countGenderDtoDAO.countGender();
+
         return new ResponseEntity<>(countGenders,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<SalaryDTO>> calculateSalaries(int id, int year, int month) {
+        calculateSalaryService.calculateSalaries(id, year, month);
+        return null;
     }
 
     @Override

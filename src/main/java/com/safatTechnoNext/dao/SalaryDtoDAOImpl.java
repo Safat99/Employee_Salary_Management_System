@@ -15,20 +15,22 @@ public class SalaryDtoDAOImpl implements SalaryDtoDAO{
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<SalaryDTO> calculateSalary() {
-        String sql = """
+    public List<SalaryDTO> calculateSalary(int totalWorkingDays) {
+        String sql = String.format(
+                """
                 select\s
                 	emp_id, username, designation_name, count(*) as total_present_days,\s
-                	salary as monthly_salary, count(*) * salary / 19 as allocated_salary
+                	salary as monthly_salary, count(*) * salary / %d as allocated_salary
                 from attendance a
                 join employee e on a.emp_id = e.id\s
                 join designation d on d.id = e.designation_id
                 where is_present = true
                 group by emp_id, username, salary, designation_name;
-                """;
+                """,
+                totalWorkingDays
+        );
 
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SalaryDTO.class));
-
     }
 
     @Override

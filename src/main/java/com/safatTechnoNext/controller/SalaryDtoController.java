@@ -12,11 +12,14 @@ import java.util.List;
 @RequestMapping("/api/salaryDto")
 public interface SalaryDtoController {
     @GetMapping("/calculateSalaryAll")
-    ResponseEntity<List<SalaryDTO>> calculateSalaryAll();
+    ResponseEntity<List<SalaryDTO>> calculateSalaryAll(@RequestParam int totalWorkingDays);
 
     @GetMapping("/countGender")
     ResponseEntity<List<EmployeeNumberDTO>> countGender();
 
     @GetMapping("/findWorkingDays")
     ResponseEntity<?> findWorkingDays(@RequestParam int year, @RequestParam int month);
+
+    @GetMapping("/calculateSalaries")
+    ResponseEntity<List<SalaryDTO>> calculateSalaries(@RequestParam int id, @RequestParam int year, @RequestParam int month);
 }
