@@ -7,4 +7,7 @@ import java.util.List;
 public interface SalaryDtoDAO {
 
     List<SalaryDTO> calculateSalary();
+
+    int findOffDays(int year, int month);
+    int findTotalDays(int year, int month);
 }

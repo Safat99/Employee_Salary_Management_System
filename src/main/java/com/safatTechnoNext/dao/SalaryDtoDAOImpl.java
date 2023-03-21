@@ -29,6 +29,21 @@ public class SalaryDtoDAOImpl implements SalaryDtoDAO{
 
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SalaryDTO.class));
 
-
     }
+
+    @Override
+    public int findTotalDays(int year, int month) {
+        String sql = String.format("select find_total_days(%d, %d)", year, month);
+        Integer total_days = jdbcTemplate.queryForObject(sql, Integer.class);
+        return total_days;
+    }
+
+    @Override
+    public int findOffDays(int year, int month) {
+        String sql = String.format("select find_offdays(%d, %d)", year, month);
+        Integer total_off_days = jdbcTemplate.queryForObject(sql, Integer.class);
+        return total_off_days;
+    }
+
+
 }

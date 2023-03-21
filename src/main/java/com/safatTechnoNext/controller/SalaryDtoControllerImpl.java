@@ -1,5 +1,6 @@
 package com.safatTechnoNext.controller;
 
+import com.safatTechnoNext.Service.CalculateSalaryService;
 import com.safatTechnoNext.dao.CountGenderDtoDAO;
 import com.safatTechnoNext.dao.SalaryDtoDAO;
 import com.safatTechnoNext.dto.EmployeeNumberDTO;
@@ -20,6 +21,9 @@ public class SalaryDtoControllerImpl implements SalaryDtoController{
     @Autowired
     CountGenderDtoDAO countGenderDtoDAO;
 
+    @Autowired
+    CalculateSalaryService calculateSalaryService;
+
     @Override
     public ResponseEntity<List<SalaryDTO>> calculateSalaryAll() {
         List<SalaryDTO> salaryDTOS =  salaryDtoDAO.calculateSalary();
@@ -30,5 +34,24 @@ public class SalaryDtoControllerImpl implements SalaryDtoController{
     public ResponseEntity<List<EmployeeNumberDTO>> countGender() {
         List<EmployeeNumberDTO> countGenders = countGenderDtoDAO.countGender();
         return new ResponseEntity<>(countGenders,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<IntegerWrapper> findWorkingDays(int year, int month) {
+        int value = calculateSalaryService.findWorkingDays(year, month);
+
+        return new ResponseEntity<>(new IntegerWrapper(value), HttpStatus.OK);
+    }
+
+    private static class IntegerWrapper {
+        private int value;
+
+        public IntegerWrapper(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }
